@@ -47,7 +47,6 @@
 .header__today-btn {
 	height: fit-content;
 	font-family: 'Inter';
-
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 22px;
@@ -60,7 +59,14 @@
 	justify-content: space-between;
 }
 
-.header__prev-month-btn {
+.header__month-btn {
+	width: 44px;
+	height: 44px;
+}
+
+.header__month-btn_type_left {
+	background: content-box url(./images/left-arrow.svg);
+	padding: 9.2px 16.5px 9.2px 14.7px;
 }
 
 .header__month {
@@ -71,10 +77,11 @@
 	color: #1b1b1b;
 }
 
-.header__next-month-btn {
+.header__year-for-mobile {
+	display: none;
 }
-
-.header__week-btn {
+.header__year-for-mobile_visible {
+	display: block;
 }
 
 .header__current-period-row {
