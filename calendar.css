@@ -1,5 +1,5 @@
 /* normalize.css */
-@import url(../vendor/normalize.css);
+@import url(./vendor/normalize.css);
 
 /* Шрифты */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
@@ -15,7 +15,8 @@
 	cursor: pointer;
 }
 
-.page {
+.calendar {
+	margin: auto;
 	width: 100%;
 	max-width: 527px;
 	background-color: #fff;
@@ -28,7 +29,7 @@
 }
 
 .header__year-row {
-	padding: 7px 0;
+	padding: 8px 0 7px;
 	display: block;
 	text-align: center;
 	font-weight: 500;
@@ -55,6 +56,8 @@
 }
 
 .header__month-wrap {
+	width: 56.5%;
+	padding-right: 16px;
 	display: flex;
 	justify-content: space-between;
 }
@@ -63,10 +66,13 @@
 	width: 44px;
 	height: 44px;
 }
-
 .header__month-btn_type_left {
 	background: content-box url(./images/left-arrow.svg);
 	padding: 9.2px 16.5px 9.2px 14.7px;
+}
+.header__month-btn_type_right {
+	background: content-box url(./images/right-arrow.svg);
+	padding: 9.2px 14.7px 9.2px 16.5px;
 }
 
 .header__month {
@@ -85,7 +91,7 @@
 }
 
 .header__current-period-row {
-	padding: 7px 0;
+	padding: 8px 0;
 	display: block;
 	text-align: center;
 	font-weight: 500;
