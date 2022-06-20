@@ -112,7 +112,7 @@
 	margin: 0;
 	padding: 0;
 	display: grid;
-	grid-template: repeat(6, minmax(66px, 1fr)) / repeat(7, 1fr);
+	grid-template: repeat(6, 54px) / repeat(7, 1fr);
 }
 
 .grid__item {
