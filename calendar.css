@@ -3,6 +3,7 @@
 
 /* Шрифты */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:wght@500&display=swap');
 
 .button {
@@ -55,7 +56,7 @@
 	color: #0994c0;
 }
 
-.header__month-wrap {
+.header__month-container {
 	width: 56.5%;
 	padding-right: 16px;
 	display: flex;
@@ -99,4 +100,46 @@
 	line-height: 120%;
 	letter-spacing: 0.18px;
 	color: #bf1523;
+}
+
+.grid-container {
+	padding: 53px 27px 24px 24px;
+	box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.09);
+}
+
+.grid {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template: repeat(6, minmax(66px, 1fr)) / repeat(7, 1fr);
+}
+
+.grid__item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 1px dashed #fff;
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 120%;
+	letter-spacing: 0.18px;
+}
+.grid__item:hover {
+	border-color: #787878;
+}
+.grid__item_type_title:hover {
+	border-color: #fff;
+}
+.grid__item_type_desibled {
+	color: #c4c4c4;
+}
+.grid__item_type_actual {
+	border-style: solid;
+	border-color: #000;
+}
+.grid__item_type_pressed {
+	background: #f0d6d8;
+	border-style: solid;
+	border-color: #bf1523;
 }
