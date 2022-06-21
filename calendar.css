@@ -20,24 +20,36 @@
 	margin: auto;
 	width: 100%;
 	max-width: 527px;
+	min-width: 320px;
 	background-color: #fff;
+	color: #1b1b1b;
 	font-family: 'Roboto';
 }
 
 .calendar-header {
-	padding: 0 15.5px;
+	padding: 8px 15.5px 0 14.5px;
 	box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.09);
+}
+@media screen and (max-width: 425px) {
+	.calendar-header {
+		padding: 14px 16px 6px;
+		box-shadow: none;
+	}
 }
 
 .calendar-header__year-row {
-	padding: 8px 0 7px;
+	padding: 0 0 7px;
 	display: block;
 	text-align: center;
 	font-weight: 500;
 	font-size: 18px;
 	line-height: 120%;
 	letter-spacing: 0.18px;
-	color: #1b1b1b;
+}
+@media screen and (max-width: 425px) {
+	.calendar-header__year-row {
+		display: none;
+	}
 }
 
 .calendar-header__month-row {
@@ -55,25 +67,53 @@
 	letter-spacing: 0.0018em;
 	color: #0994c0;
 }
+@media screen and (max-width: 425px) {
+	.calendar-header__today-btn {
+		display: none;
+	}
+}
 
 .calendar-header__month-container {
 	width: 56.5%;
-	padding-right: 16px;
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+}
+@media screen and (max-width: 425px) {
+	.calendar-header__month-container {
+		width: 100%;
+	}
 }
 
 .calendar-header__month-btn {
 	width: 44px;
 	height: 44px;
 }
-.calendar-header__month-btn_type_left {
+@media screen and (max-width: 425px) {
+	.calendar-header__month-btn {
+		width: 24px;
+		height: 24px;
+	}
+}
+.calendar-header__month-btn_type_previous {
 	background: content-box url(./images/left-arrow.svg);
 	padding: 9.2px 16.5px 9.2px 14.7px;
 }
-.calendar-header__month-btn_type_right {
+@media screen and (max-width: 425px) {
+	.calendar-header__month-btn_type_previous {
+		background-image: url(./images/left-arrow_mobile.svg);
+		padding: 5px 9px 5px 8px;
+	}
+}
+.calendar-header__month-btn_type_next {
 	background: content-box url(./images/right-arrow.svg);
 	padding: 9.2px 14.7px 9.2px 16.5px;
+}
+@media screen and (max-width: 425px) {
+	.calendar-header__month-btn_type_next {
+		background-image: url(./images/right-arrow_mobile.svg);
+		padding: 5px 8px 5px 9px;
+	}
 }
 
 .calendar-header__month {
@@ -83,12 +123,28 @@
 	letter-spacing: 0.18px;
 	color: #1b1b1b;
 }
+@media screen and (max-width: 425px) {
+	.calendar-header__month {
+		font-weight: 400;
+		font-size: 16px;
+		line-height: 120%;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+	}
+}
 
 .calendar-header__year-for-mobile {
 	display: none;
+	text-align: center;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 120%;
+	color: #a0a0a0;
 }
-.calendar-header__year-for-mobile_visible {
-	display: block;
+@media screen and (max-width: 425px) {
+	.calendar-header__year-for-mobile {
+		display: block;
+	}
 }
 
 .calendar-header__current-period-row {
@@ -102,10 +158,20 @@
 	letter-spacing: 0.18px;
 	color: #bf1523;
 }
+@media screen and (max-width: 425px) {
+	.calendar-header__current-period-row {
+		display: none;
+	}
+}
 
 .calendar-grid {
 	padding: 53px 27px 24px 24px;
 	box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.09);
+}
+@media screen and (max-width: 425px) {
+	.calendar-grid {
+		padding: 0 20px 13px;
+	}
 }
 
 .calendar-grid__days-list {
@@ -113,7 +179,12 @@
 	margin: 0;
 	padding: 0;
 	display: grid;
-	grid-template: repeat(6, 54px) / repeat(7, 1fr);
+	grid-template: repeat(6, 56px) / repeat(7, minmax(20px, 68px));
+}
+@media screen and (max-width: 425px) {
+	.calendar-grid__days-list {
+		row-gap: 1px;
+	}
 }
 
 .calendar-grid__item {
@@ -126,6 +197,11 @@
 	line-height: 120%;
 	letter-spacing: 0.18px;
 	position: relative;
+}
+@media screen and (max-width: 425px) {
+	.calendar-grid__item_type_title {
+		font-size: 15px;
+	}
 }
 .calendar-grid__item:hover {
 	border-color: #787878;
@@ -146,16 +222,21 @@
 	border-color: #bf1523;
 }
 
-.calendar-grid__events-wrap {
+.calendar-grid__points-wrap {
 	position: absolute;
-	top: 40px;
-	width: 29%;
+	top: 44px;
+	width: 33%;
 	height: fit-content;
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
+}
+@media screen and (max-width: 425px) {
+	.calendar-grid__points-wrap {
+		width: 33%;
+	}
 }
 
-.calendar-grid__event {
+.calendar-grid__point {
 	width: 4px;
 	height: 4px;
 	background: content-box #bf1523;
