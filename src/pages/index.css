@@ -205,17 +205,17 @@
 }
 
 @media screen and (max-width: 425px) {
-	.calendar-days-list {
+	.calendar-grid__days-list {
 		margin-top: -10px;
-		row-gap: 1px;
+		row-gap: 2px;
 	}
 }
 
-.calendar-days-list_type_long {
+.calendar-grid__days-list_type_long {
 	grid-template-rows: repeat(6, 56px);
 }
 
-.calendar-days-list_type_short {
+.calendar-grid__days-list_type_short {
 	grid-template-rows: repeat(4, 56px);
 }
 
@@ -271,7 +271,8 @@
 
 @media screen and (max-width: 425px) {
 	.calendar-day__events-wrap {
-		width: 50%;
+		top: 46px;
+		width: 73%;
 	}
 }
 
