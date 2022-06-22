@@ -230,7 +230,7 @@
 		font-size: 15px;
 	}
 }
-.calendar-grid__day_type_desibled {
+.calendar-grid__day_disabled {
 	color: #c4c4c4;
 }
 .calendar-grid__day_type_actual {
