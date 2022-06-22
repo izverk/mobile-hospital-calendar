@@ -181,11 +181,6 @@
 	display: grid;
 	grid-template: 56px / repeat(7, minmax(20px, 68px));
 }
-/* @media screen and (max-width: 425px) {
-	.calendar-grid__header {
-		grid-template-rows: repeat(1, 56px)
-	}
-} */
 
 .calendar-grid__days-list {
 	list-style: none;
@@ -195,19 +190,19 @@
 	grid-template: repeat(5, 56px) / repeat(7, minmax(20px, 68px));
 }
 @media screen and (max-width: 425px) {
-	.calendar-grid__days-list {
+	.calendar-days-list {
 		margin-top: -10px;
 		row-gap: 1px;
 	}
 }
-.calendar-grid__days-list_type_long {
+.calendar-days-list_type_long {
 	grid-template-rows: repeat(6, 56px);
 }
-.calendar-grid__days-list_type_short {
+.calendar-days-list_type_short {
 	grid-template-rows: repeat(4, 56px);
 }
 
-.calendar-grid__day {
+.calendar-day {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -219,25 +214,25 @@
 	position: relative;
 }
 
-.calendar-grid__day:hover {
+.calendar-day:hover {
 	border-color: #787878;
 }
-.calendar-grid__day_type_title:hover {
+.calendar-day_type_title:hover {
 	border-color: #fff;
 }
 @media screen and (max-width: 425px) {
-	.calendar-grid__day_type_title {
+	.calendar-day_type_title {
 		font-size: 15px;
 	}
 }
-.calendar-grid__day_disabled {
+.calendar-day_disabled {
 	color: #c4c4c4;
 }
-.calendar-grid__day_type_actual {
+.calendar-day_type_actual {
 	border-style: solid;
 	border-color: #000;
 }
-.calendar-grid__day_type_pressed {
+.calendar-day_type_pressed {
 	background: #f0d6d8;
 	border-style: solid;
 	border-color: #bf1523;
