@@ -147,7 +147,7 @@
 	}
 }
 
-.calendar-header__current-period-row {
+.calendar-header__selected-period-row {
 	padding: 8px 0;
 	min-height: 21.6px;
 	display: block;
@@ -159,7 +159,7 @@
 	color: #bf1523;
 }
 @media screen and (max-width: 425px) {
-	.calendar-header__current-period-row {
+	.calendar-header__selected-period-row {
 		display: none;
 	}
 }
@@ -174,20 +174,40 @@
 	}
 }
 
+.calendar-grid__header {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: grid;
+	grid-template: 56px / repeat(7, minmax(20px, 68px));
+}
+/* @media screen and (max-width: 425px) {
+	.calendar-grid__header {
+		grid-template-rows: repeat(1, 56px)
+	}
+} */
+
 .calendar-grid__days-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	display: grid;
-	grid-template: repeat(6, 56px) / repeat(7, minmax(20px, 68px));
+	grid-template: repeat(5, 56px) / repeat(7, minmax(20px, 68px));
 }
 @media screen and (max-width: 425px) {
 	.calendar-grid__days-list {
+		margin-top: -10px;
 		row-gap: 1px;
 	}
 }
+.calendar-grid__days-list_type_long {
+	grid-template-rows: repeat(6, 56px);
+}
+.calendar-grid__days-list_type_short {
+	grid-template-rows: repeat(4, 56px);
+}
 
-.calendar-grid__item {
+.calendar-grid__day {
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -198,25 +218,26 @@
 	letter-spacing: 0.18px;
 	position: relative;
 }
+
+.calendar-grid__day:hover {
+	border-color: #787878;
+}
+.calendar-grid__day_type_title:hover {
+	border-color: #fff;
+}
 @media screen and (max-width: 425px) {
-	.calendar-grid__item_type_title {
+	.calendar-grid__day_type_title {
 		font-size: 15px;
 	}
 }
-.calendar-grid__item:hover {
-	border-color: #787878;
-}
-.calendar-grid__item_type_title:hover {
-	border-color: #fff;
-}
-.calendar-grid__item_type_desibled {
+.calendar-grid__day_type_desibled {
 	color: #c4c4c4;
 }
-.calendar-grid__item_type_actual {
+.calendar-grid__day_type_actual {
 	border-style: solid;
 	border-color: #000;
 }
-.calendar-grid__item_type_pressed {
+.calendar-grid__day_type_pressed {
 	background: #f0d6d8;
 	border-style: solid;
 	border-color: #bf1523;
@@ -232,7 +253,7 @@
 }
 @media screen and (max-width: 425px) {
 	.calendar-grid__points-wrap {
-		width: 33%;
+		width: 50%;
 	}
 }
 
