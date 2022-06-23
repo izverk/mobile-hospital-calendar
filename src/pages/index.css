@@ -2,282 +2,41 @@
 @import url(../vendor/normalize.css);
 
 /* Шрифты */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:wght@500&display=swap');
+@import url(https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Roboto&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Roboto:wght@500&display=swap);
 
-.button {
-	display: block;
-	padding: 0;
-	border: none;
-	background-color: inherit;
-}
+/* Кнопки */
+@import url(../blocks/button/button.css);
 
-.button:hover {
-	cursor: pointer;
-}
+/* Контейнер верхнего уровня для календаря */
+@import url(../blocks/calendar/calendar.css);
 
-.calendar {
-	margin: auto;
-	width: 100%;
-	max-width: 527px;
-	min-width: 320px;
-	background-color: #fff;
-	color: #1b1b1b;
-	font-family: 'Roboto';
-}
+/* Шапка календаря */
+@import url(../blocks/calendar-header/calendar-header.css);
+@import url(../blocks/calendar-header/__year-row/calendar-header__year-row.css);
+@import url(../blocks/calendar-header/__month-row/calendar-header__month-row.css);
+@import url(../blocks/calendar-header/__today-btn/calendar-header__today-btn.css);
+@import url(../blocks/calendar-header/__month-container/calendar-header__month-container.css);
+@import url(../blocks/calendar-header/__change-month-btn/calendar-header__change-month-btn.css);
+@import url(../blocks/calendar-header/__change-month-btn/_type/calendar-header__change-month-btn_type_previous.css);
+@import url(../blocks/calendar-header/__change-month-btn/_type/calendar-header__change-month-btn_type_next.css);
+@import url(../blocks/calendar-header/__month/calendar-header__month.css);
+@import url(../blocks/calendar-header/__year-for-mobile/calendar-header__year-for-mobile.css);
+@import url(../blocks/calendar-header/__selected-period-row/calendar-header__selected-period-row.css);
 
-.calendar-header {
-	padding: 8px 15.5px 0 14.5px;
-	box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.09);
-}
+/* Сетка календаря */
+@import url(../blocks/calendar-grid/calendar-grid.css);
+@import url(../blocks/calendar-grid/__header/calendar-grid__header.css);
+@import url(../blocks/calendar-grid/__days-list/calendar-grid__days-list.css);
+@import url(../blocks/calendar-grid/__days-list/_type/calendar-grid__days-list_type_long.css);
+@import url(../blocks/calendar-grid/__days-list/_type/calendar-grid__days-list_type_short.css);
 
-@media screen and (max-width: 425px) {
-	.calendar-header {
-		padding: 14px 16px 6px;
-		box-shadow: none;
-	}
-}
-
-.calendar-header__year-row {
-	padding: 0 0 7px;
-	display: block;
-	text-align: center;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 120%;
-	letter-spacing: 0.18px;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__year-row {
-		display: none;
-	}
-}
-
-.calendar-header__month-row {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.calendar-header__today-btn {
-	height: fit-content;
-	font-family: 'Inter';
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 22px;
-	letter-spacing: 0.0018em;
-	color: #0994c0;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__today-btn {
-		display: none;
-	}
-}
-
-.calendar-header__month-container {
-	width: 56.5%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__month-container {
-		width: 100%;
-	}
-}
-
-.calendar-header__month-btn {
-	width: 44px;
-	height: 44px;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__month-btn {
-		width: 24px;
-		height: 24px;
-	}
-}
-
-.calendar-header__month-btn_type_previous {
-	background: content-box url(../images/left-arrow.svg);
-	padding: 9.2px 16.5px 9.2px 14.7px;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__month-btn_type_previous {
-		background-image: url(../images/left-arrow_mobile.svg);
-		padding: 5px 9px 5px 8px;
-	}
-}
-
-.calendar-header__month-btn_type_next {
-	background: content-box url(../images/right-arrow.svg);
-	padding: 9.2px 14.7px 9.2px 16.5px;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__month-btn_type_next {
-		background-image: url(../images/right-arrow_mobile.svg);
-		padding: 5px 8px 5px 9px;
-	}
-}
-
-.calendar-header__month {
-	font-weight: 500;
-	font-size: 36px;
-	line-height: 120%;
-	letter-spacing: 0.18px;
-	color: #1b1b1b;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__month {
-		font-weight: 400;
-		font-size: 16px;
-		line-height: 120%;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-	}
-}
-
-.calendar-header__year-for-mobile {
-	display: none;
-	text-align: center;
-	font-weight: 400;
-	font-size: 15px;
-	line-height: 120%;
-	color: #a0a0a0;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__year-for-mobile {
-		display: block;
-	}
-}
-
-.calendar-header__selected-period-row {
-	padding: 8px 0;
-	min-height: 21.6px;
-	display: block;
-	text-align: center;
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 120%;
-	letter-spacing: 0.18px;
-	color: #bf1523;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-header__selected-period-row {
-		display: none;
-	}
-}
-
-.calendar-grid {
-	padding: 53px 27px 24px 24px;
-	box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.09);
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-grid {
-		padding: 0 20px 13px;
-	}
-}
-
-.calendar-grid__header {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	grid-template: 56px / repeat(7, minmax(20px, 68px));
-}
-
-.calendar-grid__days-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	display: grid;
-	grid-template: repeat(5, 56px) / repeat(7, minmax(20px, 68px));
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-grid__days-list {
-		margin-top: -10px;
-		row-gap: 2px;
-	}
-}
-
-.calendar-grid__days-list_type_long {
-	grid-template-rows: repeat(6, 56px);
-}
-
-.calendar-grid__days-list_type_short {
-	grid-template-rows: repeat(4, 56px);
-}
-
-.calendar-day {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border: 1px dashed #fff;
-	font-weight: 400;
-	font-size: 20px;
-	line-height: 120%;
-	letter-spacing: 0.18px;
-	position: relative;
-}
-
-.calendar-day:hover {
-	border-color: #787878;
-}
-
-.calendar-day_type_title:hover {
-	border-color: #fff;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-day_type_title {
-		font-size: 15px;
-	}
-}
-
-.calendar-day_disabled {
-	color: #c4c4c4;
-}
-
-.calendar-day_type_actual {
-	border-style: solid;
-	border-color: #000;
-}
-
-.calendar-day_type_pressed {
-	background: #f0d6d8;
-	border-style: solid;
-	border-color: #bf1523;
-}
-
-.calendar-day__events-wrap {
-	position: absolute;
-	top: 44px;
-	width: 33%;
-	height: fit-content;
-	display: flex;
-	justify-content: space-around;
-}
-
-@media screen and (max-width: 425px) {
-	.calendar-day__events-wrap {
-		top: 46px;
-		width: 73%;
-	}
-}
-
-.calendar-day__event {
-	width: 4px;
-	height: 4px;
-	background: content-box #bf1523;
-}
+/* День календаря */
+@import url(../blocks/calendar-day/calendar-day.css);
+@import url(../blocks/calendar-day/_type/calendar-day_type_title.css);
+@import url(../blocks/calendar-day/_type/calendar-day_type_dim.css);
+@import url(../blocks/calendar-day/_type/calendar-day_type_current.css);
+@import url(../blocks/calendar-day/_type/calendar-day_type_pressed.css);
+@import url(../blocks/calendar-day/__events-wrap/calendar-day__events-wrap.css);
+@import url(../blocks/calendar-day/__event/calendar-day__event.css);

@@ -18,14 +18,15 @@
 					Сегодня
 				</button>
 				<div class="calendar-header__month-container">
-					<button class="button calendar-header__month-btn calendar-header__month-btn_type_previous"></button>
+					<button
+						class="button calendar-header__change-month-btn calendar-header__change-month-btn_type_previous"></button>
 					<div class="calendar-header__month-wrap">
 						<span class="calendar-header__month">Апрель</span>
 						<span class="calendar-header__year-for-mobile">2022</span>
 					</div>
-					<button class="button calendar-header__month-btn calendar-header__month-btn_type_next"></button>
+					<button class="button calendar-header__change-month-btn calendar-header__change-month-btn_type_next"></button>
 				</div>
-				<button class="button calendar-header__today-btn calendar-header__week-btn" type="button">
+				<button class="button calendar-header__today-btn calendar-header__period-btn" type="button">
 					Неделя
 				</button>
 			</div>
@@ -42,10 +43,10 @@
 				<li class="calendar-day calendar-day_type_title">ВС</li>
 			</ul>
 			<ul class="calendar-grid__days-list">
-				<li class="calendar-day calendar-day_disabled">28</li>
-				<li class="calendar-day calendar-day_disabled">29</li>
-				<li class="calendar-day calendar-day_disabled">30</li>
-				<li class="calendar-day calendar-day_disabled">31</li>
+				<li class="calendar-day calendar-day_type_dim">28</li>
+				<li class="calendar-day calendar-day_type_dim">29</li>
+				<li class="calendar-day calendar-day_type_dim">30</li>
+				<li class="calendar-day calendar-day_type_dim">31</li>
 				<li class="calendar-day">1</li>
 				<li class="calendar-day">2</li>
 				<li class="calendar-day">3</li>
@@ -56,7 +57,7 @@
 				<li class="calendar-day">8</li>
 				<li class="calendar-day">9</li>
 				<li class="calendar-day">10</li>
-				<li class="calendar-day calendar-day_type_actual">
+				<li class="calendar-day calendar-day_type_current">
 					11
 					<div class="calendar-day__events-wrap">
 						<div class="calendar-day__event"></div>
