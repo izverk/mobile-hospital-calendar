@@ -40,3 +40,4 @@
 @import url(../blocks/calendar-day/_type/calendar-day_type_pressed.css);
 @import url(../blocks/calendar-day/__events-wrap/calendar-day__events-wrap.css);
 @import url(../blocks/calendar-day/__event/calendar-day__event.css);
+@import url(../blocks/calendar-day/__event/_invisible/calendar-day__event_invisible.css);

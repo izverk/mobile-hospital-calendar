@@ -91,17 +91,8 @@ const getDaysArray = (
 	for (let i = 0; i < lastDateOfMonth; i++) {
 		daysArray[i] = i + 1;
 	}
-
-	console.log('🚀 ~ file: index.js ~ line 93 ~ daysArray', daysArray);
-
 	const addedDaysToStart =
 		firstWeekDayOfMonth === 0 ? 6 : firstWeekDayOfMonth - 1;
-
-	console.log(
-		'🚀 ~ file: index.js ~ line 97 ~ addedDaysToStart',
-		addedDaysToStart
-	);
-
 	if (addedDaysToStart) {
 		const dateObj = new Date(currentYear, currentMonth - 1);
 		const lastDateOfPrevMonth = getLastDateOfMonth(
@@ -112,33 +103,46 @@ const getDaysArray = (
 			daysArray.unshift(
 				dateObj.getDate(dateObj.setDate(lastDateOfPrevMonth - i))
 			);
-			console.log('🚀 ~ file: index.js ~ line 113 ~ daysArray', daysArray);
 		}
 	}
-
 	const addedDaysToEnd = lastWeekDayOfMonth === 0 ? 0 : 7 - lastWeekDayOfMonth;
-	console.log(
-		'🚀 ~ file: index.js ~ line 105 ~ addedDaysToEnd',
-		addedDaysToEnd
-	);
-
 	if (addedDaysToEnd) {
 		const dateObj = new Date(currentYear, currentMonth + 1);
 		for (let i = 0; i < addedDaysToEnd; i++) {
 			daysArray.push(dateObj.getDate(dateObj.setDate(1 + i)));
 		}
 	}
-
-	return daysArray;
+	return { daysArray, addedDaysToStart, addedDaysToEnd };
 };
 
 // Функция получения массива html-элементов - ячеек сетки календаря из массива дней
-const getDaysElementsArr = (daysArray) => {
-	return daysArray.map((i) => {
+const getDaysElementsArr = (daysArray, addedDaysToStart, addedDaysToEnd) => {
+	return daysArray.map((item, itemIndex) => {
 		const dayElement = dayTemplateElement.content
 			.querySelector(dayElementSelector)
 			.cloneNode(true);
-		dayElement.prepend(String(i));
+		dayElement.prepend(String(item));
+		// добавляем обводку для текущей даты
+		if (item === new Date().getDate()) {
+			dayElement.classList.add('calendar-day_type_current');
+		}
+		// добавляем подсветку для кликнутой даты
+		dayElement.addEventListener('click', (e) => {
+			if (pressedDayElement) {
+				// если ранее уже кликали дату, то с неё подсветку убираем
+				pressedDayElement.classList.remove('calendar-day_type_pressed');
+			}
+			// назначаем новую кликнутую дату и добавляем подсветку
+			pressedDayElement = e.currentTarget;
+			pressedDayElement.classList.add('calendar-day_type_pressed');
+		});
+		// добавляем тусклый цвет для дат соседних месяцев
+		if (
+			itemIndex < addedDaysToStart ||
+			itemIndex > daysArray.length - 1 - addedDaysToEnd
+		) {
+			dayElement.classList.add('calendar-day_type_dim');
+		}
 		return dayElement;
 	});
 };
@@ -151,7 +155,10 @@ const renderDates = (container, contentArr) => {
 	// });
 };
 
-// ==================== ОСНОВНОЙ АЛГОРИТМ =====================
+// ================================ ОСНОВНОЙ АЛГОРИТМ ===============================
+
+// Кликнутая пользователем дата календаря (html-элемент)
+let pressedDayElement = undefined;
 
 // Получаем данные о текущем дне
 const {
@@ -171,8 +178,8 @@ const { firstWeekDayOfMonth, lastWeekDayOfMonth } = getFirstAndLastDaysOfMonth(
 	currentMonth
 );
 
-// Получаем массив дней для отрисовки
-const daysArray = getDaysArray(
+// Получаем массив дней для отрисовки, а также количество добавленных к нему дней от соседних месяцев слева и справа
+const { daysArray, addedDaysToStart, addedDaysToEnd } = getDaysArray(
 	currentYear,
 	currentMonth,
 	firstWeekDayOfMonth,
@@ -182,8 +189,12 @@ const daysArray = getDaysArray(
 
 console.log(daysArray);
 
-//
-const daysElementsArr = getDaysElementsArr(daysArray);
+// Получаем массив html-элементов для отрисовки
+const daysElementsArr = getDaysElementsArr(
+	daysArray,
+	addedDaysToStart,
+	addedDaysToEnd
+);
 
 console.log(daysElementsArr);
 
