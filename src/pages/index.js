@@ -2,15 +2,27 @@ import {
 	daysListContainerSelector,
 	dayTemplateSelector,
 	dayElementSelector,
+	prevMonthBtnSelector,
+	nextMonthBtnSelector,
+	currentYearElementSelector,
+	currentMonthElementSelector,
+	monthsArr,
 } from '../utils/constants.js';
 
 // ==================== ВЫБОР ЭЛМЕНТОВ DOM =====================
 
 // Контейнер сетки календаря
 const daysListContainer = document.querySelector(daysListContainerSelector);
-
 // Элемент шаблона одной ячейки (дня) календаря из шаблона
 const dayTemplateElement = document.querySelector(dayTemplateSelector);
+// Элемент кнопки переключения месяца на предыдущий
+const prevMonthBtnElement = document.querySelector(prevMonthBtnSelector);
+// Элемент кнопки переключения месяца на следующий
+const nextMonthBtnElement = document.querySelector(nextMonthBtnSelector);
+// Элемент, отображающий текущий год
+const currentYearElement = document.querySelector(currentYearElementSelector);
+//  Элемент, отображающий текущий месяц
+const currentMonthElement = document.querySelector(currentMonthElementSelector);
 
 // ==================== ОБЪЯВЛЕНИЯ ФУНКЦИЙ =====================
 
@@ -79,7 +91,7 @@ const getFirstAndLastDaysOfMonth = (year, month) => {
 };
 
 // Функция получения массива чисел календаря для текущего месяца с добавками чисел в начале и в конце массива от предыдущего и последующего месяцев
-const getDaysArray = (
+const getDaysArrayData = (
 	currentYear,
 	currentMonth,
 	firstWeekDayOfMonth,
@@ -136,67 +148,131 @@ const getDaysElementsArr = (daysArray, addedDaysToStart, addedDaysToEnd) => {
 			pressedDayElement = e.currentTarget;
 			pressedDayElement.classList.add('calendar-day_type_pressed');
 		});
-		// добавляем тусклый цвет для дат соседних месяцев
+		// добавляем тусклый цвет для дат соседних месяцев и убираем для них обводку текущей даты, если вдруг дата совпала с текущей
 		if (
 			itemIndex < addedDaysToStart ||
 			itemIndex > daysArray.length - 1 - addedDaysToEnd
 		) {
 			dayElement.classList.add('calendar-day_type_dim');
+			dayElement.classList.remove('calendar-day_type_current');
 		}
 		return dayElement;
 	});
 };
 
+// Функция обновления глобальных переменных, используемых для отрисовки сетки календаря
+const updateCalendarVariables = (currentYear, currentMonth) => {
+	// обновляем данные о последнем числе текущего месяца
+	lastDateOfMonth = getLastDateOfMonth(currentYear, currentMonth);
+	// обновляем данные о первом и последнем днях недели в текущем мессяце
+	let tempObj = getFirstAndLastDaysOfMonth(currentYear, currentMonth);
+	firstWeekDayOfMonth = tempObj.firstWeekDayOfMonth;
+	lastWeekDayOfMonth = tempObj.lastWeekDayOfMonth;
+	// обновляем массив дней для отрисовки, а также количество добавленных к нему дней от соседних месяцев слева и справа
+	tempObj = getDaysArrayData(
+		currentYear,
+		currentMonth,
+		firstWeekDayOfMonth,
+		lastWeekDayOfMonth,
+		lastDateOfMonth
+	);
+	daysArray = tempObj.daysArray;
+	addedDaysToStart = tempObj.addedDaysToStart;
+	addedDaysToEnd = tempObj.addedDaysToEnd;
+	// обновляем массив html-элементов для отрисовки
+	daysElementsArr = getDaysElementsArr(
+		daysArray,
+		addedDaysToStart,
+		addedDaysToEnd
+	);
+};
+
 // Функция-отрисовщик сетки календаря
-const renderDates = (container, contentArr) => {
+const renderDays = (container, contentArr) => {
 	container.append(...contentArr);
 	// daysElementsArr.forEach((item) => {
 	// 	daysListContainer.append(item);
 	// });
 };
 
+// Функция-отрисовщик текущего года в шапке календаря
+const renderCurrentYear = (currentYear) => {
+	currentYearElement.textContent = currentYear;
+};
+
+// Функция-отрисовщик текущуго месяца
+const renderCurrentMonth = (currentMonth) => {
+	currentMonthElement.textContent = monthsArr[currentMonth];
+};
+// Функция-отрисовщик выбранного периода
+// ...
+
 // ================================ ОСНОВНОЙ АЛГОРИТМ ===============================
 
-// Кликнутая пользователем дата календаря (html-элемент)
+// ------------------------ Глобальные переменные ---------------------
+
+// Нажатая (кликнутая) пользователем дата (html-элемент)
 let pressedDayElement = undefined;
-
-// Получаем данные о текущем дне
-const {
-	currentDateObj,
-	currentYear,
-	currentMonth,
-	currentDate,
-	currentWeekDay,
-} = getCurrentDayData();
-
-// Получаем данные о последнем числе текущего месяца
-const lastDateOfMonth = getLastDateOfMonth(currentYear, currentMonth);
-
-// Получаем данные о первом и последнем днях недели в текущем мессяце
-const { firstWeekDayOfMonth, lastWeekDayOfMonth } = getFirstAndLastDaysOfMonth(
+// Текщий год и месяц
+let { currentYear, currentMonth } = getCurrentDayData();
+// Последнее число текущего месяца
+let lastDateOfMonth = getLastDateOfMonth(currentYear, currentMonth);
+// Первый и последний дни недели текущего мессяца
+let { firstWeekDayOfMonth, lastWeekDayOfMonth } = getFirstAndLastDaysOfMonth(
 	currentYear,
 	currentMonth
 );
-
-// Получаем массив дней для отрисовки, а также количество добавленных к нему дней от соседних месяцев слева и справа
-const { daysArray, addedDaysToStart, addedDaysToEnd } = getDaysArray(
+// Текущий массив дней для отрисовки и добавки дней от соседних месяцев слева и справа
+let { daysArray, addedDaysToStart, addedDaysToEnd } = getDaysArrayData(
 	currentYear,
 	currentMonth,
 	firstWeekDayOfMonth,
 	lastWeekDayOfMonth,
 	lastDateOfMonth
 );
-
-console.log(daysArray);
-
-// Получаем массив html-элементов для отрисовки
-const daysElementsArr = getDaysElementsArr(
+// Текущий массив html-элементов для отрисовки
+let daysElementsArr = getDaysElementsArr(
 	daysArray,
 	addedDaysToStart,
 	addedDaysToEnd
 );
 
-console.log(daysElementsArr);
+// ---------------------------- Первичная отрисовка элементов ------------------------------
 
 // Отрисовываем сетку дней календаря
-renderDates(daysListContainer, daysElementsArr);
+renderDays(daysListContainer, daysElementsArr);
+
+// Отрисовываем текущий год
+renderCurrentYear(currentYear);
+
+// Отрисовываем текущий месяц
+renderCurrentMonth(currentMonth);
+
+// Отрисовываем выбранный период
+// ...
+
+// ------------------------------ Обработчики событий --------------------------------
+
+// Переключение месяца на предыдущий
+prevMonthBtnElement.addEventListener('mouseup', (e) => {
+	const date = new Date(currentYear, currentMonth);
+	currentMonth = date.getMonth(date.setMonth(currentMonth - 1));
+	currentYear = date.getFullYear();
+	updateCalendarVariables(currentYear, currentMonth);
+	daysListContainer.innerHTML = '';
+	renderDays(daysListContainer, daysElementsArr);
+	renderCurrentYear(currentYear);
+	renderCurrentMonth(currentMonth);
+});
+
+// Переключение месяца на следующий
+nextMonthBtnElement.addEventListener('mouseup', (e) => {
+	const date = new Date(currentYear, currentMonth);
+	currentMonth = date.getMonth(date.setMonth(currentMonth + 1));
+	currentYear = date.getFullYear();
+	updateCalendarVariables(currentYear, currentMonth);
+	daysListContainer.innerHTML = '';
+	renderDays(daysListContainer, daysElementsArr);
+	renderCurrentYear(currentYear);
+	renderCurrentMonth(currentMonth);
+});
