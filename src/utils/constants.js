@@ -8,10 +8,20 @@ const dayElementSelector = '.calendar-day';
 const prevMonthBtnSelector = '.calendar-header__change-month-btn';
 // Селектор кнопки переключения месяца на предыдущий
 const nextMonthBtnSelector = '.calendar-header__change-month-btn_type_next';
-// Селектор элемента с текущим годом
+// Селекторы элементов с текущим годом
 const currentYearElementSelector = '.calendar-header__year-row';
+const currentYearElementSelectorForMobile = '.calendar-header__year-for-mobile';
 // Селектор элемента с текущим месяцем
 const currentMonthElementSelector = '.calendar-header__month';
+// Селектор элемента, отображающего выбранный период времени
+const currentPeriodElementSelector = '.calendar-header__selected-period-row';
+// Селектор кнопки смены отображаемого периода (месяц/неделя)
+const changePeriodBtnSelector = '.calendar-header__period-btn';
+// Селектор кнопки "Сегодня"
+const todayBtnSelector = '.calendar-header__today-btn';
+// Селектор контейнера сетки календаря
+const calendarGridContainerSelector = '.calendar-grid';
+
 // Массив названий месяцев
 const monthsArr = [
 	'Январь',
@@ -27,6 +37,8 @@ const monthsArr = [
 	'Ноябрь',
 	'Декабрь',
 ];
+// Отображаемые периоды времени
+const timePeriodsForDisplay = { day: 'day', week: 'week', month: 'month' };
 
 export {
 	daysListContainerSelector,
@@ -37,4 +49,10 @@ export {
 	currentYearElementSelector,
 	currentMonthElementSelector,
 	monthsArr,
+	currentYearElementSelectorForMobile,
+	timePeriodsForDisplay,
+	currentPeriodElementSelector,
+	changePeriodBtnSelector,
+	calendarGridContainerSelector,
+	todayBtnSelector,
 };

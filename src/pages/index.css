@@ -27,6 +27,7 @@
 
 /* Сетка календаря */
 @import url(../blocks/calendar-grid/calendar-grid.css);
+@import url(../blocks/calendar-grid/_invisible/calendar-grid_invisible.css);
 @import url(../blocks/calendar-grid/__header/calendar-grid__header.css);
 @import url(../blocks/calendar-grid/__days-list/calendar-grid__days-list.css);
 @import url(../blocks/calendar-grid/__days-list/_type/calendar-grid__days-list_type_long.css);
