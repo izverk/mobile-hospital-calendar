@@ -406,11 +406,11 @@ const initCalendar = (calendarContainer) => {
 			// показываем сетку календаря
 			calendarGridContainer.classList.remove(invisibilityModifier);
 		}
-		// приводим все глобальные переменные и сетку календаря, в значения, соответствующие актуальной (сегодняшней) дате
+		// приводим все глобальные переменные, используемые для отрисовки календаря, в значения, соответствующие актуальной (сегодняшней) дате
 		currentYear = new Date().getFullYear();
 		currentMonth = new Date().getMonth();
 		updateCalendarVariables(currentYear, currentMonth);
-		// заново рендерим элементы при новом значении отображаемого периода
+		// заново рендерим элементы при новом значении переменных
 		daysListContainer.innerHTML = '';
 		renderDays(daysListContainer, daysElementsArr);
 		renderCurrentYear(currentYear);
@@ -427,11 +427,11 @@ const initCalendar = (calendarContainer) => {
 			// убираем сетку календаря
 			calendarGridContainer.classList.add(invisibilityModifier);
 		}
-		// приводим все глобальные переменные, используемые для отрисовки сетки календаря, в значения, соответствующие актуальной (сегодняшней) дате
+		// приводим все глобальные переменные, используемые для отрисовки календаря, в значения, соответствующие актуальной (сегодняшней) дате
 		currentYear = new Date().getFullYear();
 		currentMonth = new Date().getMonth();
 		updateCalendarVariables(currentYear, currentMonth);
-		// заново рендерим элементы при новом значении отображаемого периода
+		// заново рендерим элементы при новом значении переменных
 		renderCurrentYear(currentYear);
 		renderCurrentMonth(currentMonth);
 		renderCurrentPeriod(displayedPeriod);
