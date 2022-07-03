@@ -1,3 +1,5 @@
+// Селектор контейнера календаря
+const calendarContainerSelector = '.calendar';
 // Селектор контейнера, в который динамически вставляется сетка календарных дней (чисел календаря)
 const daysListContainerSelector = '.calendar-grid__days-list';
 // Селектор элемента шаблона карточки календарного дня
@@ -21,6 +23,8 @@ const changePeriodBtnSelector = '.calendar-header__period-btn';
 const todayBtnSelector = '.calendar-header__today-btn';
 // Селектор контейнера сетки календаря
 const calendarGridContainerSelector = '.calendar-grid';
+// Модификатор стиля для скрытия сетки календаря
+const invisibilityModifier = 'calendar-grid_invisible';
 
 // Массив названий месяцев
 const monthsArr = [
@@ -41,6 +45,7 @@ const monthsArr = [
 const timePeriodsForDisplay = { day: 'day', week: 'week', month: 'month' };
 
 export {
+	calendarContainerSelector,
 	daysListContainerSelector,
 	dayTemplateSelector,
 	dayElementSelector,
@@ -55,4 +60,5 @@ export {
 	changePeriodBtnSelector,
 	calendarGridContainerSelector,
 	todayBtnSelector,
+	invisibilityModifier,
 };
